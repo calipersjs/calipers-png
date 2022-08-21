@@ -40,7 +40,6 @@ describe('png', function () {
         var pngPath = path.resolve(fixtures, file);
         var fd = fs.openSync(pngPath, 'r');
         return png.measure(pngPath, fd)
-        .bind({})
         .then(function (result) {
           expect(result).to.eql(expectedOutput);
         })
