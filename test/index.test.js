@@ -1,51 +1,53 @@
 'use strict';
 
-var fs     = require('fs');
-var path   = require('path');
-var expect = require('chai').expect;
-var png    = require('../lib/index');
+const fs     = require('fs');
+const path   = require('path');
+const expect = require('chai').expect;
+const png    = require('../lib/index');
 
-describe('png', function () {
+describe('png', () => {
 
-  describe('detect', function () {
-    it('should return true for a PNG', function () {
-      var pngPath = path.resolve(__dirname, 'fixtures/png/123x456.png');
-      var result = png.detect(fs.readFileSync(pngPath));
+  describe('detect', () => {
+
+    it('should return true for a PNG', () => {
+      const pngPath = path.resolve(__dirname, 'fixtures/png/123x456.png');
+      const result = png.detect(fs.readFileSync(pngPath));
       expect(result).to.eql(true);
     });
 
-    it('should return false for a non-PNG', function () {
-      var jpegPath = path.resolve(__dirname, 'fixtures/jpeg/123x456.jpg');
-      var result = png.detect(fs.readFileSync(jpegPath));
+    it('should return false for a non-PNG', () => {
+      const jpegPath = path.resolve(__dirname, 'fixtures/jpeg/123x456.jpg');
+      const result = png.detect(fs.readFileSync(jpegPath));
       expect(result).to.eql(false);
     });
+
   });
 
-  describe('measure', function () {
+  describe('measure', () => {
 
-    var fixtures = path.resolve(__dirname, 'fixtures/png');
-    var files = fs.readdirSync(fixtures);
+    const fixtures = path.resolve(__dirname, 'fixtures/png');
+    const files = fs.readdirSync(fixtures);
 
-    files.forEach(function (file) {
+    files.forEach((file) => {
 
-      var fileSplit = file.split(/x|\./);
-      var width = parseInt(fileSplit[0]);
-      var height = parseInt(fileSplit[1]);
-      var expectedOutput = {
+      const fileSplit = file.split(/x|\./);
+      const width = parseInt(fileSplit[0]);
+      const height = parseInt(fileSplit[1]);
+      const expectedOutput = {
         type: 'png',
-        pages: [{ width: width, height: height }]
+        pages: [{ width, height }]
       };
 
-      it('should return the correct dimensions for ' + file, function () {
-        var pngPath = path.resolve(fixtures, file);
-        var fd = fs.openSync(pngPath, 'r');
+      it(`should return the correct dimensions for ${  file}`, () => {
+        const pngPath = path.resolve(fixtures, file);
+        const fd = fs.openSync(pngPath, 'r');
         return png.measure(pngPath, fd)
-        .then(function (result) {
-          expect(result).to.eql(expectedOutput);
-        })
-        .finally(function () {
-          fs.closeSync(fd);
-        });
+          .then((result) => {
+            expect(result).to.eql(expectedOutput);
+          })
+          .finally(() => {
+            fs.closeSync(fd);
+          });
       });
 
     });

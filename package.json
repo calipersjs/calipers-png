@@ -6,7 +6,8 @@
   "scripts": {
     "test": "NODE_ENV=test nyc mocha -- test --recursive --timeout 15000",
     "enforce": "nyc check-coverage --statement 100 --branch 100 --function 100 --lines 100",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
   },
   "repository": {
     "type": "git",
