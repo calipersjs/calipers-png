@@ -28,3 +28,5 @@ node_modules
 .lock-wscript
 
 .nyc_output
+
+package-lock.json
