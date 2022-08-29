@@ -1,6 +1,4 @@
-#calipers-png
-
-[![npm version](https://badge.fury.io/js/calipers-png.svg)](http://badge.fury.io/js/calipers-png) [![Build Status](https://travis-ci.org/calipersjs/calipers-png.svg?branch=master)](https://travis-ci.org/calipersjs/calipers-png)
+# calipers-png [![npm version](https://badge.fury.io/js/calipers-png.svg)](http://badge.fury.io/js/calipers-png) [![Build Status](https://github.com/calipersjs/calipers-png/actions/workflows/ci.yml/badge.svg)](https://github.com/calipersjs/calipers-png/actions)
 
 PNG Plugin for [Calipers](https://github.com/calipersjs/calipers).
 
